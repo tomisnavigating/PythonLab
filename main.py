@@ -89,11 +89,15 @@ def main():
                 result = db_ops.search_data_id(int(search_term))
                 if result is not None:
                     print(make_employee_table(result))
+                else:
+                    print("No results found")
 
             except ValueError:
                 result = db_ops.search_data_name(search_term)
                 if len(result) != 0:
                     print(make_employee_table(result))
+                else:
+                    print("No results found")
 
             
 
@@ -147,7 +151,10 @@ def main():
                 confirmationProvider = UserConfirmationProvider(
                     f"Confirm pay adjustment of {input_percentage}% for {employee_to_award.forename} {employee_to_award.surname}")
 
-                db_ops.adjust_pay(input_id, input_percentage, confirmationProvider)
+                if db_ops.adjust_pay(input_id, input_percentage, confirmationProvider):
+                    print("Adjustment successful")
+                else:
+                    print("Adjustment unsucessful")
 
             else:
                 print("No such record")
@@ -157,7 +164,10 @@ def main():
 
             input_percentage = float(input("Enter percentage pay adjustment:\t"))
 
-            db_ops.adjust_pay_all_employees(input_percentage, UserConfirmationProvider("Confirm general pay adjustment"))
+            if db_ops.adjust_pay_all_employees(input_percentage, UserConfirmationProvider("Confirm general pay adjustment")):
+                print("Adjustment successful")
+            else:
+                print("Adjustment unsucessful")
 
 
         elif __choose_menu == 9:

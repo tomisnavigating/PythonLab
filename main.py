@@ -10,8 +10,8 @@ def get_numerical_user_input(data_type: type, prompt: str, minimum_value=None, m
     Args:
         data_type (type): The required data type (eg, int, float)
         prompt (str): The prompt to be shown to the user
-        minimum_value : The minumum value a user is allowed ot enter
-        maximum_value : The maximum value a user is allowed ot enter
+        minimum_value : The minumum value a user is allowed to enter
+        maximum_value : The maximum value a user is allowed to enter
 
     Returns:
         data_type: numerical data of hte requested type.

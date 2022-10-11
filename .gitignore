@@ -1,0 +1,6 @@
+.idea/*
+.ipynb_checkpoints/*
+Sot*
+.vscode/*
+__pycache__/*
+EmployeeDatabase.db

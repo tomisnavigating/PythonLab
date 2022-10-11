@@ -217,10 +217,11 @@ class DBOperations:
 
         Args:
             id (int): Id of Employee to delete
-            confirmationProvider (UserConfirmationProvider): _description_
+            confirmationProvider (UserConfirmationProvider): A UserConfirmationProvider which can be
+            used by the function to get user confirmation that the deletion can be commited.
 
         Returns:
-            _type_: _description_
+            bool: Success
         """        
         success = False
         try:
@@ -243,6 +244,17 @@ class DBOperations:
             return success
 
     def adjust_pay(self, id: int, percentage_increase: float, confirmationProvider: UserConfirmationProvider):
+        """Funcion which adjusts the pay of the Employee with given Id, by a defined percentage.
+
+        Args:
+            id (int): Employee Id
+            percentage_increase (float): Percentage by which to adjust Employee pay (-99% to +inf%)
+            confirmationProvider (UserConfirmationProvider): A UserConfirmationProvider which can be
+            used by the function to get user confirmation that the change can be commited.
+
+        Returns:
+            bool: Success
+        """        
         success = False
         try:
             self.get_connection()
@@ -265,6 +277,13 @@ class DBOperations:
             return success
 
     def adjust_pay_all_employees(self, percentage_increase: float, confirmationProvider: UserConfirmationProvider):
+        
+        """Adjust the pay of all Employees in the EmployeeUoB table by a defined percentage (-99% to +inf%). 
+        Useful when awarding an annual pay increase, in line with inflation like all good employers do :) Range
+
+        Returns:
+            bool: Success
+        """        
         success = False
         try:
             self.get_connection()

@@ -3,12 +3,15 @@ from typing import Iterable
 from prettytable import PrettyTable
 
 
-
 class Employee:
+    """
+    The class which represents Employees. 
+    """
 
     user_editable_attributes = ['title', 'forename', 'surname', 'email', 'salary']
 
     def __init__(self):
+  
         self.id = 0
         self.title = ''
         self.forename = ''
@@ -17,7 +20,12 @@ class Employee:
         self.salary = 0.0
 
     @staticmethod
-    def from_user_input(existing_data = None):
+    def from_user_input():
+        """Static method which allows users to create Employee objects from the command line.
+
+        Returns:
+            Employee: A new Emplopyee object.
+        """        
         e = Employee()
 
         for attribute in e.user_editable_attributes:
@@ -27,6 +35,15 @@ class Employee:
 
     @staticmethod
     def from_db_result(result_tuple):
+        """Static method which allows an Employee object to be created from the result of an SQL query which returns a
+        result from the EmployeeUoB table.
+
+        Args:
+            result_tuple (tuple): THe result of an SQL query over the EmployeeUoB table.
+
+        Returns:
+            Employee: A new Employee object
+        """        
         try:
             e = Employee()
             e.set_employee_id(result_tuple[0])
@@ -40,6 +57,9 @@ class Employee:
             return None
 
     def apply_user_update(self):
+        """
+        Function which allows the user to selectively update Employee attributes from the command line.
+        """        
         print ("Enter updated attributes. Leave blank to accept current value")
         for attribute in self.user_editable_attributes:
             current_value = getattr(self,attribute)
@@ -84,6 +104,15 @@ class Employee:
         return self.salary
 
     def to_tuple(self, include_id=False):
+        """
+        Function which returns the Employee object as a tuple of values which can be inserted into a SQL query wildcards.
+
+        Args:
+            include_id (bool, optional): Whether to include the Employee's Id in the tuple. Defaults to False.
+
+        Returns:
+            tuple: (title, forename, surname, email, salary, [id])
+        """        
         if include_id:
             return (
                     self.get_employee_title(),
@@ -104,6 +133,14 @@ class Employee:
 
 
 def make_employee_table(employees: Iterable):
+
+    """Creates a nicely formatted table of Employees from a list of Employee objects.
+
+    Returns:
+        str: String representation of a table of Employees, which can be printed to the console.
+
+        Note: Uses the PrettyTable package: https://github.com/jazzband/prettytable
+    """
 
     table = PrettyTable()
     data_attributes = ['id'] + Employee.user_editable_attributes

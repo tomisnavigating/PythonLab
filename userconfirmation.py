@@ -1,7 +1,8 @@
 from employee import make_employee_table
 
 class UserConfirmationProvider:
-    """The UserConfirmationProvider class provides a way to pass in a callback to 
+    """
+    The UserConfirmationProvider class provides a way to pass in a callback to 
     DBOperations functions which can be used to solicit confirmation from the user
     that the changes that are being made are correct.
     The use of UserConfirmationProviders mean that there is no user interaction code 
@@ -16,7 +17,7 @@ class UserConfirmationProvider:
         """Ask for confirmation of the changes.
 
         Args:
-            data ([]Employee]): A list of the affected Employee records
+            data (list[Employee]): A list of the affected Employee records
 
         Returns:
             bool: Whether the user approved the change(s)

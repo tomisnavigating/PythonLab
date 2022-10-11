@@ -35,11 +35,16 @@ def get_numerical_user_input(data_type: type, prompt: str, minimum_value=None, m
             print(e)
 
 
-# The main function will parse arguments.
-# These arguments will be defined by the users on the console.
-# The user will select a choice from the menu to interact with the database.
+
 
 def main():
+    """
+    The main function will parse arguments
+    These arguments will be defined by the users on the console
+    The user will select a choice from the menu to interact with the database.
+    All input and output will be retrieved and produced by this function and supporting functions
+    so that the class which accesses the database can remain as generic as possible.
+    """    
     while True:
         print("\n Menu:")
         print("**********")
